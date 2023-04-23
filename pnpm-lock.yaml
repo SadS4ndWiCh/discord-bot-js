@@ -4,6 +4,9 @@ dependencies:
   '@discordjs/core':
     specifier: ^0.5.2
     version: 0.5.2
+  dotenv:
+    specifier: ^16.0.3
+    version: 16.0.3
 
 packages:
 
@@ -102,6 +105,11 @@ packages:
 
   /discord-api-types@0.37.39:
     resolution: {integrity: sha512-hkhQsQyzsTJITp311WXvHZh9j4RAMfIk2hPmsWeOTN50QTpg6zqmJNfel9D/8lYNvsU01wzw9281Yke8NhYyHg==}
+    dev: false
+
+  /dotenv@16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /file-type@18.2.1:
