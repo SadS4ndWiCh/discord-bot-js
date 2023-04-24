@@ -1,17 +1,16 @@
 import type { Client } from 'discord.js';
-import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CreateEventResponse } from '~/utils/create-event.utils';
+import { readdir } from '~/utils/readdir.utils';
 
 const EVENTS_PATH = join(__dirname, '..', '..', 'events');
 
 export async function loadEvents(client: Client) {
-  const eventsFolder = readdirSync(EVENTS_PATH).filter((file) =>
+  const eventsFolder = readdir(EVENTS_PATH, true).filter((file) =>
     file.endsWith('.ts'),
   );
 
-  for (const file of eventsFolder) {
-    const filePath = join(EVENTS_PATH, file);
+  for (const filePath of eventsFolder) {
     const {
       default: { ...event },
     }: { default: CreateEventResponse } = await import(filePath);

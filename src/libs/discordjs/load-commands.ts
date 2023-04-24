@@ -2,20 +2,19 @@ import type {
   Client,
   RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from 'discord.js';
-import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { CreateCommandResponse } from '~/utils/create-command.utils';
+import { readdir } from '~/utils/readdir.utils';
 
 const COMMANDS_PATH = join(__dirname, '..', '..', 'commands');
 
 export async function loadCommands(client: Client) {
   const commands: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
-  const commandFiles = readdirSync(COMMANDS_PATH).filter((file) =>
+  const commandFiles = readdir(COMMANDS_PATH, true).filter((file) =>
     file.endsWith('.ts'),
   );
 
-  for (const file of commandFiles) {
-    const filePath = join(COMMANDS_PATH, file);
+  for (const filePath of commandFiles) {
     const {
       default: { ...command },
     }: { default: CreateCommandResponse } = await import(filePath);
